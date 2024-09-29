@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrasi Pendaftar</title>
+    <style>
+      :root {
+        --blue-50: #e8f1ff;
+        --blue-100: #d5e5ff;
+        --blue-200: #b3ceff;
+        --blue-300: #85acff;
+        --blue-400: #567bff;
+        --blue-500: #2f4bff;
+        --blue-600: #0c16ff;
+        --blue-700: #0008ff;
+        --blue-800: #060fcd;
+        --blue-900: #101a9f;
+        --blue-950: #0a0e5c;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      /* Hero Section */
+      #hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: linear-gradient(
+          to bottom,
+          var(--blue-400) 30%,
+          var(--blue-50)
+        );
+      }
+      h1 {
+        font-size: 2.75rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+      a.btn-link {
+        text-decoration: none;
+        background: var(--blue-500);
+        color: white;
+        border-radius: 10px;
+        padding: 1rem 1.5rem;
+        margin-top: 1.5rem;
+      }
+      a.btn-link:hover {
+        cursor: pointer;
+        background: var(--blue-600);
+      }
+
+      /* Main Content */
+      #main-content {
+        height: 100vh;
+        padding: 4rem 5rem;
+        background-color: var(--blue-50);
+      }
+      .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-bottom: 4rem;
+      }
+      .tab {
+        padding: 10px 20px;
+        border: 1px solid var(--blue-50);
+        background-color: var(--blue-400);
+        color: white;
+      }
+      .tab.active {
+        border: 1px solid var(--blue-50);
+        background-color: var(--blue-500);
+        color: white;
+        font-weight: bold;
+      }
+      .tab-content {
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        margin: 0 15rem;
+        /* color: var(--blue-200); */
+      }
+
+      .form-title {
+        text-align: center;
+        font-size: 2rem;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+      .error {
+        color: red;
+        font-size: 1em;
+        margin: 0.5rem 0;
+      }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #submitBtn {
+        text-align: center;
+        padding: 0.75rem 1rem;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        background-color: rgb(46, 221, 46);
+      }
+
+      h4.table-title {
+        font-size: 2rem;
+        text-align: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      .no-data td {
+        text-align: center;
+      }
+
+      #resume {
+        margin-top: 1rem;
+      }
+      .notification {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        padding: 1rem 1.5rem;
+        border-radius: 20px;
+        border-top-right-radius: 0;
+        background: white;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+      }
+      .notification.show {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="hero">
+      <h1><b>"</b>Take Your First Step to Software Engineering<b>"</b></h1>
+      <h2>Seminar buat menemani langkah pertamamu ke dunia <i>Software</i></h2>
+      <h3>Yuk Buruan Daftar!</h3>
+      <a href="#main-content" class="btn-link">Klik Disini</a>
+    </section>
+    <section id="main-content">
+      <div class="tabs">
+        <div class="tab active" id="registrasi-tab">Registrasi</div>
+        <div class="tab" id="list-tab">List Pendaftar</div>
+      </div>
+      <div id="registrasi-content" class="tab-content">
+        <p class="form-title">Form Pendaftaran Seminar</p>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="nama">Nama</label>
+            <p id="namaError" class="error"></p>
+            <input type="text" id="nama" placeholder="Masukkan Nama" />
+          </div>
+          <div class="form-group">
+            <label for="umur">Umur</label>
+            <p id="umurError" class="error"></p>
+            <input
+              type="number"
+              id="umur"
+              min="0"
+              max="100"
+              placeholder="Masukkan Umur"
+            />
+          </div>
+          <div class="form-group">
+            <label for="uangSangu">Uang Sangu</label>
+            <p id="uangSanguError" class="error"></p>
+            <input
+              type="number"
+              id="uangSangu"
+              placeholder="Masukkan Uang Sangu"
+              min="0"
+              max="1000000"
+            />
+          </div>
+          <div class="btn">
+            <button type="button" id="submitBtn">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div id="list-content" class="tab-content" style="display: none">
+        <h4 class="table-title">List Pendaftar Seminar</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Umur</th>
+              <th>Uang Sangu</th>
+            </tr>
+          </thead>
+          <tbody id="pendaftarTable">
+            <!-- Data akan diisi secara dinamis -->
+          </tbody>
+        </table>
+        <div id="resume">
+          <!-- Resume akan diisi secara dinamis -->
+        </div>
+      </div>
+    </section>
+    <!-- <div class="container">
+    </div> -->
+    <div class="notification">
+      <span>Registrasi telah berhasil</span>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
